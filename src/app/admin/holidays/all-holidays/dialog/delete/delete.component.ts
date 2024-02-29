@@ -1,0 +1,41 @@
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { HolidayService } from '../../all-holidays.service';
+import { DatePipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { Employee } from 'app/admin/employees/model/Employee.model';
+
+export interface DialogData {
+  id: number;
+  employee: Employee;
+  dateDebut: string;
+  dateFin: string;
+}
+
+@Component({
+    selector: 'app-delete:not(d)',
+    templateUrl: './delete.component.html',
+    styleUrls: ['./delete.component.scss'],
+    standalone: true,
+    imports: [
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        MatButtonModule,
+        MatDialogClose,
+        DatePipe,
+    ],
+})
+export class DeleteDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<DeleteDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public holidayService: HolidayService
+  ) {}
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  confirmDelete(): void {
+    this.holidayService.deleteHoliday(this.data.id);
+  }
+}

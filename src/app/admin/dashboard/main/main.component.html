@@ -1,0 +1,180 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Dashboad'" [items]="['Home']" [active_item]="'Dashboad'"></app-breadcrumb>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2></h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <div class="row clearfix">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5 class="tx-primary m-b-30">Employee Expertise</h5>
+                  </div>
+                  <div class="recent-report__chart">
+                    <canvas baseChart class="chart" [data]="doughnutChartData" [type]="doughnutChartType"
+                      [options]="doughnutChartOptions">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Annual Salary per Employee</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <apx-chart [series]="avgLecChartOptions.series!" [chart]="avgLecChartOptions.chart!"
+              [xaxis]="avgLecChartOptions.xaxis!" [stroke]="avgLecChartOptions.stroke!"
+              [colors]="avgLecChartOptions.colors!" [dataLabels]="avgLecChartOptions.dataLabels!"
+              [legend]="avgLecChartOptions.legend!" [markers]="avgLecChartOptions.markers!"
+              [grid]="avgLecChartOptions.grid!" [yaxis]="avgLecChartOptions.yaxis!"
+              [tooltip]="avgLecChartOptions.tooltip!" [title]="avgLecChartOptions.title!"
+              [fill]="avgLecChartOptions.fill!">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Signed Contracts</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <apx-chart [series]="barChartOptions.series!" [chart]="barChartOptions.chart!"
+              [dataLabels]="barChartOptions.dataLabels!" [plotOptions]="barChartOptions.plotOptions!"
+              [responsive]="barChartOptions.responsive!" [xaxis]="barChartOptions.xaxis!" [grid]="barChartOptions.grid!"
+              [tooltip]="barChartOptions.tooltip!" [legend]="barChartOptions.legend!" [fill]="barChartOptions.fill!">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2>Employee Status</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="tableBody">
+            <div class="table-responsive">
+              <table class="table display product-overview mb-30" id="support_table">
+                <thead>
+                  <tr>
+                    <th>Employee Name</th>
+                    <th>Contract Type</th>
+                    <th>Contract start</th>
+                    <th>Contract end</th>
+                    <th>Days</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(detail of details; track detail){
+                    <tr>
+                      <td>{{detail.nom}}</td>
+                      <td>{{detail.type}}</td>
+                      <td>{{detail.date_d | date:"yyyy/MM/dd"}}</td>
+                      <td>{{detail.date_f | date:"yyyy/MM/dd"}}</td>
+                      <td>{{detail.jours}}</td>
+                      <td>
+                        @if(detail.status == "Unexpired"){
+                          <div class="badge badge-solid-green">{{detail.status}}</div>
+                        }@else{
+                          <div class="badge badge-solid-red">{{detail.status}}</div>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
